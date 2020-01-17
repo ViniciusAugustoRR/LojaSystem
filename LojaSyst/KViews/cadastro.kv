@@ -1,0 +1,22 @@
+
+
+MainScreen:
+    id: mainbro
+
+<MainScreen>:
+    orientation: 'vertical'
+    Button:
+        text: 'modified'
+        on_release: root.changes()
+        size_hint_y: .2
+    meucampo:
+        id: camponome
+
+
+<meucampo@BoxLayout>
+    orientation: 'vertical'
+    Label:
+        id: labelcamp
+        text: 'LABEL aded in kv'
+    TextInput:
+        id: insertcamp
