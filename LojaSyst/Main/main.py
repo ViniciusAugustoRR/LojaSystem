@@ -1,6 +1,4 @@
-from Models.Service import ServiceMD, ClienteMD, ResponsavelMD, EquipamentoMD
-from KViews.Tela01 import Cad
-from kivy.app import App
+from Controller.CadastroController import Cad
 
 
 def main():
@@ -9,16 +7,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
-
-
-
 
 
 

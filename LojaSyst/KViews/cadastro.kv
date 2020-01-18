@@ -1,22 +1,30 @@
 
 
-MainScreen:
-    id: mainbro
-
-<MainScreen>:
-    orientation: 'vertical'
-    Button:
-        text: 'modified'
-        on_release: root.changes()
-        size_hint_y: .2
-    meucampo:
-        id: camponome
+<GerenciarTelas>:
+    TelaCadastro:
 
 
-<meucampo@BoxLayout>
-    orientation: 'vertical'
+<TelaCadastro>:
+    name: 'telacad'
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            text: "Change to manager test"
+            on_release: root.changetoTest()
+        CampoLbTi:
+            id: campoEmail
+
+
+
+<CampoLbTi@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint_y: .2
     Label:
         id: labelcamp
         text: 'LABEL aded in kv'
+        #size_hint_y: .2
+        #size_hint_x: .5
     TextInput:
         id: insertcamp
+        #size_hint_y: .2
+        #size_hint_x: .5

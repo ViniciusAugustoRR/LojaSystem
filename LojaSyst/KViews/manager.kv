@@ -1,0 +1,24 @@
+
+<GerenciarTelas>:
+    TelaTest
+
+<TelaTest>:
+    name: 'telatest'
+    Button:
+        text: "go to cadastro"
+        on_release: root.changetoCad()
+    CampoLbTi2
+
+
+<CampoLbTi2@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint_y: .2
+    Label:
+        id: labelcamp
+        text: 'TESTSTESATESTESTESTS'
+        #size_hint_y: .2
+        #size_hint_x: .5
+    TextInput:
+        id: insertcamp
+        #size_hint_y: .2
+        #size_hint_x: .5
