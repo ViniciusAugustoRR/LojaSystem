@@ -1,24 +1,23 @@
 
 <GerenciarTelas>:
-    TelaTest
+    TelaMenu
 
-<TelaTest>:
-    name: 'telatest'
+<TelaMenu>:
+    name: 'telamenu'
+    Menu
+
+
+<Menu@GridLayout>:
+    cols: 3
     Button:
-        text: "go to cadastro"
-        on_release: root.changetoCad()
-    CampoLbTi2
-
-
-<CampoLbTi2@BoxLayout>:
-    orientation: 'horizontal'
-    size_hint_y: .2
-    Label:
-        id: labelcamp
-        text: 'TESTSTESATESTESTESTS'
-        #size_hint_y: .2
-        #size_hint_x: .5
-    TextInput:
-        id: insertcamp
-        #size_hint_y: .2
-        #size_hint_x: .5
+        text: "Cadastrar Clientes"
+        on_release: root.parent.changetoCad()
+    Button:
+        text: "Lista de Clientes"
+        on_release: root.parent.changetoCad()
+    Button:
+        text: "Tecnicos"
+        on_release: root.parent.changetoCad()
+    Button:
+        text: "Equipamento"
+        on_release: root.parent.changetoCad()

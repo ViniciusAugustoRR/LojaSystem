@@ -1,21 +1,12 @@
-from Controller.CadastroController import Cad
+from Controller.ManagerController import AppExec
 
 
 def main():
-    Cad().run()
+    AppExec().run()
 
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,3 +1,4 @@
+#:import hex kivy.utils.get_color_from_hex
 
 
 <GerenciarTelas>:
@@ -5,26 +6,63 @@
 
 
 <TelaCadastro>:
+    id: telacads
     name: 'telacad'
+    canvas.before:
+        Color:
+            rgba: hex('#CCCCCC')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    AnchorB:
+
+
+<AnchorB>:
+    canvas.before:
+        Color:
+            rgba: hex('#AAAAAA')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    orientation: 'vertical'
+    size_hint_y: .5
+    pos_hint: {'top' : 0.8}
+
     BoxLayout:
-        orientation: "vertical"
-        Button:
-            text: "Change to manager test"
-            on_release: root.changetoTest()
-        CampoLbTi:
-            id: campoEmail
+        orientation: 'horizontal'
+        size_hint_y: .05
+        Label:
+            text: 'Nome: '
+        TextInput:
+            id: camponome
 
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .05
+        Label:
+            text: 'Endereco: '
+        TextInput:
+            id: campoender
 
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .05
+        Label:
+            text: 'Telefone: '
+        TextInput:
+            id: campotelef
 
-<CampoLbTi@BoxLayout>:
-    orientation: 'horizontal'
-    size_hint_y: .2
-    Label:
-        id: labelcamp
-        text: 'LABEL aded in kv'
-        #size_hint_y: .2
-        #size_hint_x: .5
-    TextInput:
-        id: insertcamp
-        #size_hint_y: .2
-        #size_hint_x: .5
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .05
+        Label:
+            text: 'E-mail: '
+        TextInput:
+            id: campoemail
+
+    Button:
+        text: 'Cadastrar'
+        on_release: root.cadastrar()
+        size_hint_y: .05
+
