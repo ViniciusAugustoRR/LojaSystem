@@ -53,6 +53,9 @@
         TextInput:
             id: campotelef
 
+    Meucampo:
+        id: Nome
+
     BoxLayout:
         orientation: 'horizontal'
         size_hint_y: .05
@@ -65,4 +68,14 @@
         text: 'Cadastrar'
         on_release: root.cadastrar()
         size_hint_y: .05
+
+
+<Meucampo@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint_y: .05
+    Label:
+        id: labelcampo
+        text: ''
+    TextInput:
+        id: textinputcampo
 

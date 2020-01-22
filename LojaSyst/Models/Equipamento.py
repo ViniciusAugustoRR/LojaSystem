@@ -12,5 +12,5 @@ class EquipamentoMD:
         self.Serie_N = str
         self.Equipamento_Nome = str
         self.Modelo = str
-        self.MarcaId = str
+        self.Marca = str
         self.Acessorios = str

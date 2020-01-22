@@ -17,12 +17,14 @@ class TelaCadastro(Screen):
     def __init__(self, **kwargs):
         super(TelaCadastro, self).__init__(**kwargs)
 
+
     def changetoTest(self):
         self.manager.current = 'telamenu'
 
 
 class AnchorB(BoxLayout):
     def cadastrar(self):
+
         ClienteEx = ClienteMD()
         ClienteEx.Nome_c = self.ids.camponome.text
         ClienteEx.Email = self.ids.campoemail.text

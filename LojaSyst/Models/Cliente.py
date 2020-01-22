@@ -1,5 +1,3 @@
-from typing import Any
-
 
 '''id: int,  nome_c: str, telefone: str, endereço: str, email: str'''
 
@@ -11,6 +9,7 @@ class ClienteMD:
         self.Enderec = str
         self.Telefone = str
         self.Email = str
+
 
 
 
