@@ -7,6 +7,7 @@ from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 from Models.Cliente import ClienteMD
+from BD.BD import DBfac
 
 
 #Builder.load_file(os.path.join(dirname(__file__), '../KViews/cadastro.kv'))
@@ -30,4 +31,8 @@ class AnchorB(BoxLayout):
         ClienteEx.Email = self.ids.campoemail.text
         ClienteEx.Telefone = self.ids.campotelef.text
         ClienteEx.Enderec = self.ids.campoender.text
+
+        DB = DBfac()
+
+        DB.CadastrarCliente(ClienteEx)
 
