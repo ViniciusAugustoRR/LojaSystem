@@ -16,11 +16,11 @@ class ServiceMD:
 
         self.Id = int
 
-        self.Data_o = datetime.date
-        self.Hora_o = datetime.time
+        self.Data_i = datetime.date
+        self.Hora_i = datetime.time
 
-        self.Data = datetime.date
-        self.Hora = datetime.time
+        self.Data_f = datetime.date
+        self.Hora_f = datetime.time
 
         self.Cliente_Id = int
         self.Responsavel_Id = int

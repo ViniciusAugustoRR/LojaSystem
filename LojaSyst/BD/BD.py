@@ -3,7 +3,9 @@ from Models.Cliente import ClienteMD
 from Models.Equipamento import EquipamentoMD
 from Models.Service import ServiceMD
 from Models.Responsavel import ResponsavelMD
+from Models.Marca import MarcaMd
 from mysql.connector import Error
+from datetime import datetime
 import copy
 
 class DBfac:
@@ -42,7 +44,6 @@ class DBfac:
         finally:
             cursor.close()
             db.close()
-
     def PuxarClientes(self):
 
         try:
@@ -54,7 +55,6 @@ class DBfac:
             ClientesCur = cursor.fetchall()
 
             Clientes = []
-            listaItems = []
 
             for listaItems in ClientesCur:
 
@@ -78,7 +78,6 @@ class DBfac:
         finally:
             cursor.close()
             db.close()
-
     def DeleteCliente(self, Cliente_Id: int):
 
         try:
@@ -126,7 +125,6 @@ class DBfac:
         finally:
             cursor.close()
             db.close()
-
     def PuxarEquipamentos(self):
 
         try:
@@ -134,14 +132,13 @@ class DBfac:
             cursor = db.cursor()
 
             cursor.execute("select * from equipamento;")
+            EquipamentosDb = cursor.fetchall()
 
-            Equipamento1 = EquipamentoMD()
             Equipamentos = []
-            listaItems = []
 
-            for Equipamento in cursor:
-                for item in Equipamento:
-                    listaItems.append(item)
+            for listaItems in EquipamentosDb:
+
+                Equipamento1 = EquipamentoMD()
 
                 Equipamento1.Id = listaItems[0]
                 Equipamento1.Serie_N = listaItems[1]
@@ -162,7 +159,6 @@ class DBfac:
         finally:
             cursor.close()
             db.close()
-
     def DeletarEquipamento(self, Equip_Id: int):
         try:
 
@@ -190,7 +186,7 @@ class DBfac:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            args = (Service.Data, Service.Data_o, Service.Hora, Service.Hora_o, Service.Cliente_Id, Service.Equipamento_Id, Service.Responsavel_Id)
+            args = (Service.Data_i, Service.Data_f, Service.Hora_i, Service.Hora_f, Service.Cliente_Id, Service.Equipamento_Id, Service.Responsavel_Id)
             querry = "INSERT INTO service(data_i, data_f, hora_i, hora_f, fk_cliente_id, fk_responsavel_id, fk_equipamento_id)" \
                      " VALUES (%s, %s, %s, %s, %s, %s, %s)"
 
@@ -209,21 +205,18 @@ class DBfac:
         finally:
             cursor.close()
             db.close()
-
     def PuxarServices(self):
         try:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
             cursor.execute("select * from service;")
+            ServicesDB = cursor.fetchall()
 
-            Service1 = ServiceMD()
             Services = []
-            listaItems = []
 
-            for Service in cursor:
-                for item in Service:
-                    listaItems.append(item)
+            for listaItems in ServicesDB:
+                Service1 = ServiceMD()
 
                 Service1.Id = listaItems[0]
                 Service1.Data = listaItems[1]
@@ -244,7 +237,6 @@ class DBfac:
         finally:
             cursor.close()
             db.close()
-
     def DeletarService(self, Service_Id: int):
         try:
 
@@ -263,6 +255,7 @@ class DBfac:
         finally:
             cursor.close()
             db.close()
+
 ################################################
 
     def CadastrarTecnico(self, Tecnico: ResponsavelMD):
@@ -271,7 +264,7 @@ class DBfac:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            args = (Tecnico.Nome)
+            args = (Tecnico.Nome, )
             querry = "INSERT INTO responsavel(nome_respons) " \
                      " VALUES (%s)"
 
@@ -290,26 +283,22 @@ class DBfac:
         finally:
             cursor.close()
             db.close()
-
     def PuxarTecnicos(self):
 
         try:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            cursor.execute("select * from tecnico;")
+            cursor.execute("select * from responsavel;")
+            TecnicosMd = cursor.fetchall()
 
-            Tecnico1 = ResponsavelMD()
             Tecnicos = []
-            listaItems = []
 
-            for Service in cursor:
-                for item in Service:
-                    listaItems.append(item)
+            for listaItems in TecnicosMd:
+                Tecnico1 = ResponsavelMD()
 
                 Tecnico1.Id = listaItems[0]
                 Tecnico1.Nome = listaItems[1]
-
 
                 Tecnicos.append(Tecnico1)
 
@@ -321,7 +310,6 @@ class DBfac:
         finally:
             cursor.close()
             db.close()
-
     def DeletarTecnicos(self, Tecnico_Id: int):
         try:
 
@@ -342,14 +330,114 @@ class DBfac:
             db.close()
 
 
+###############################################
+
+    def CadastrarMarca(self, Marca: MarcaMd):
+
+        try:
+            db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
+            cursor = db.cursor()
+
+            args = (Marca.Nome_Marca, )
+            querry = "INSERT INTO marca(nome_marca) " \
+                     " VALUES (%s)"
+
+            cursor.execute(querry, args)
+
+            if cursor.lastrowid:
+                print("Marca com o id " + str(cursor.lastrowid) + "Cadastrada com sucesso !!")
+            else:
+                print("Marca n cadastrado")
+
+            db.commit()
+
+        except Error as error:
+            print(error)
+
+        finally:
+            cursor.close()
+            db.close()
+    def PuxarMarcas(self):
+
+        try:
+            db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
+            cursor = db.cursor()
+
+            cursor.execute("select * from marca;")
+            MarcasDb = cursor.fetchall()
+
+            Marcas = []
+
+            for listaItems in MarcasDb:
+                Marca1 = MarcaMd()
+
+                Marca1.Id = listaItems[0]
+                Marca1.Nome_Marca = listaItems[1]
 
 
-MeuDb = DBfac()
+                Marcas.append(Marca1)
+
+            return Marcas
+
+        except Error as error:
+            print(error)
+
+        finally:
+            cursor.close()
+            db.close()
+
+
+
+
+
+
+'''
+CLIENTE = OK
+MARCA = OK
+
+'''
+'''MeuDb = DBfac()
+
 Clientes = MeuDb.PuxarClientes()
-
 for Cliente in Clientes:
-    print(Cliente.Nome_c)
+    print(Cliente.Id)
+marcas = MeuDb.PuxarMarcas()
+for marc in marcas:
+    print(marc.Nome_Marca)
+Equipamentos = MeuDb.PuxarEquipamentos()
+for Equip in Equipamentos:
+    print(Equip.Nome)
+    print(Equip.Marca_id)
+Responsaveis = MeuDb.PuxarTecnicos()
+for resp in Responsaveis:
+    print(resp.Nome)
 
+Services = MeuDb.PuxarServices()
+for serv in Services:
+    print(serv.Cliente_Id)
+    print(serv.Data_i)
+    print(serv.Hora_i)
+    print(serv.Equipamento_Id)'''
+'''service = ServiceMD()
+
+service.Cliente_Id = 9
+service.Equipamento_Id = 1
+service.Responsavel_Id = 1
+
+service.Data_i = datetime.date(2020, 1, 2)
+service.Hora_i = datetime.time(14, 34, 13)
+
+service.Data_f = datetime.date(2020, 2, 1)
+service.Hora_f = datetime.time(15, 23, 3)
+
+MeuDb.CadastrarService(service)'''
+'''Equipamento.Nome = "Radio"
+Equipamento.Acessorios = "Carregador"
+Equipamento.Modelo = "987sa98fankf"
+Equipamento.Serie_N = "7sfsfsZ2"
+Equipamento.Marca_id = 3
+
+MeuDb.CadastrarEquipamento(Equipamento)'''
 '''ClienteNo = ClienteMD()
 
 ClienteNo.Nome_c = "Mila Muniz Pinto"

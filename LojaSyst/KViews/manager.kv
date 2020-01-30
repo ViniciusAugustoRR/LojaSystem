@@ -4,31 +4,52 @@
 
 <TelaMenu>:
     name: 'telamenu'
-    Menu
+    Menu:
 
 
 <Menu@GridLayout>:
-    cols: 3
+    cols: 4
+
+    #CLIENTES
     Button:
         text: "Cadastrar Clientes"
         on_release: root.parent.changetoCad_Cliente()
-
     Button:
         text: "Lista de Clientes"
         on_release: root.parent.changetoList_Cliente()
 
-    Button:
-        text: "Tecnicos"
-        on_release: root.parent.changetoCad_Cliente()
 
+    #Equipamento
     Button:
-        text: "Tecnicos"
-        on_release: root.parent.changetoCad_Cliente()
+        text: "Cadastrar Equipamento"
+        on_release: root.parent.changetoCad_Equipamento()
+    Button:
+        text: "Lista de Equipamentos"
+        on_release: root.parent.changetoList_Equipamento()
 
-    Button:
-        text: "Tecnicos"
-        on_release: root.parent.changetoCad_Cliente()
 
+    #Marca
     Button:
-        text: "Equipamento"
-        on_release: root.parent.changetoCad_Cliente()
+        text: "Cadastrar Marca"
+        on_release: root.parent.changetoCad_Marca()
+    Button:
+        text: "Lista de Marcas"
+        on_release: root.parent.changetoList_Marca()
+
+
+    #Responsaveis
+    Button:
+        text: "Cadastrar Responsavel"
+        on_release: root.parent.changetoCad_Tecnico()
+    Button:
+        text: "Lista de Responsaveis"
+        on_release: root.parent.changetoList_Tecnico()
+
+
+    #Serviço
+    Button:
+        text: "Cadastrar Serviço"
+        on_release: root.parent.changetoCad_Service()
+    Button:
+        text: "Lista de Serviços"
+        on_release: root.parent.changetoList_Service()

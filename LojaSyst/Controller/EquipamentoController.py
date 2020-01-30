@@ -24,12 +24,17 @@ class TelaCadastroEquipamento(Screen):
         self.manager.current = 'telamenu'
 
 
-class AnchorB(BoxLayout):
+class AnchorEquip(BoxLayout):
     def cadastrar(self):
 
-        ClienteEx = EquipamentoMD()
+        Equipamento = EquipamentoMD()
 
+        Equipamento.Serie_N = self.ids.camponserie.text
+        Equipamento.Nome = self.ids.equipcamponome.text
+        Equipamento.Acessorios = self.ids.campoacessorios.text
+        Equipamento.Modelo = self.ids.campomodelo.text
+        Equipamento.Marca_id = int(self.ids.campomarca.text)
 
         DB1 = DBfac()
 
-        DB1.CadastrarCliente(ClienteEx)
+        DB1.CadastrarEquipamento(Equipamento)

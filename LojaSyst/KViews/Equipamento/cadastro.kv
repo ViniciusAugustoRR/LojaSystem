@@ -1,0 +1,81 @@
+#:import hex kivy.utils.get_color_from_hex
+
+<GerenciarTelas>:
+    TelaCadastroEquipamento:
+
+
+<TelaCadastroEquipamento>:
+    id: telacadse
+    name: 'telacad_Equip'
+    canvas.before:
+        Color:
+            rgba: hex('#CCCCCC')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    AnchorEquip:
+
+
+<AnchorEquip>:
+    canvas.before:
+        Color:
+            rgba: hex('#AAAAAA')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    orientation: 'vertical'
+    size_hint_y: .5
+    pos_hint: {'top' : 0.8}
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .05
+        Label:
+            text: 'Numero de Sº: '
+        TextInput:
+            id: camponserie
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .05
+        Label:
+            text: 'Nome do Equipamento: '
+        TextInput:
+            id: equipcamponome
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .05
+        Label:
+            text: 'Modelo: '
+        TextInput:
+            id: campomodelo
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .05
+        Label:
+            text: 'Acessorios: '
+        TextInput:
+            id: campoacessorios
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .05
+        Label:
+            text: 'Marca: '
+        TextInput:
+            id: campomarca
+
+
+    Button:
+        text: 'Cadastrar'
+        on_release: root.cadastrar()
+        on_release: root.parent.changetoMenu()
+        size_hint_y: .05
+
+    Button:
+        text: 'Voltar para menu'
+        on_release: root.parent.changetoMenu()
+        size_hint_y: .05

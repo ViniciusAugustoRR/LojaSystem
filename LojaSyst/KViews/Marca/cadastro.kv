@@ -2,22 +2,22 @@
 
 
 <GerenciarTelas>:
-    TelaCadastroCliente:
+    TelaCadastroMarca:
 
 
-<TelaCadastroCliente>:
+<TelaCadastroMarca>:
     id: telacads
-    name: 'telacad_cliente'
+    name: 'telacad_marca'
     canvas.before:
         Color:
             rgba: hex('#CCCCCC')
         Rectangle:
             pos: self.pos
             size: self.size
-    AnchorCliente:
+    AnchorMarca:
 
 
-<AnchorCliente>:
+<AnchorMarca>:
     canvas.before:
         Color:
             rgba: hex('#AAAAAA')
@@ -33,33 +33,11 @@
         orientation: 'horizontal'
         size_hint_y: .05
         Label:
-            text: 'Nome: '
+            text: 'Nome da Marca: '
         TextInput:
             id: camponome
 
-    BoxLayout:
-        orientation: 'horizontal'
-        size_hint_y: .05
-        Label:
-            text: 'Endereco: '
-        TextInput:
-            id: campoender
 
-    BoxLayout:
-        orientation: 'horizontal'
-        size_hint_y: .05
-        Label:
-            text: 'Telefone: '
-        TextInput:
-            id: campotelef
-
-    BoxLayout:
-        orientation: 'horizontal'
-        size_hint_y: .05
-        Label:
-            text: 'E-mail: '
-        TextInput:
-            id: campoemail
 
     Button:
         text: 'Cadastrar'
@@ -82,4 +60,3 @@
         text: ''
     TextInput:
         id: textinputcampo
-
