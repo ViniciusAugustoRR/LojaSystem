@@ -22,7 +22,7 @@ class ServiceMD:
         self.Data = datetime.date
         self.Hora = datetime.time
 
-        self.ClienteS = ClienteMD
-        self.ResponsavelS = ResponsavelMD
-        self.EquipamentoS = EquipamentoMD
+        self.Cliente_Id = int
+        self.Responsavel_Id = int
+        self.Equipamento_Id = int
 

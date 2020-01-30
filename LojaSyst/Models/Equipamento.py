@@ -9,8 +9,9 @@
 class EquipamentoMD:
     def __init__(self):
 
+        self.Id = int
         self.Serie_N = str
-        self.Equipamento_Nome = str
+        self.Nome = str
         self.Modelo = str
-        self.Marca = str
+        self.Marca_id = int
         self.Acessorios = str

@@ -6,7 +6,8 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.core.window import Window
 from kivy.config import Config
-from Controller.ClienteController import TelaCadastro
+from Controller.ClienteController import TelaCadastroCliente
+from Controller.ClienteController import TelaListaCliente
 
 Config.set('graphics', 'resizable', False)
 Window.size = (1000, 800)
@@ -31,8 +32,13 @@ class TelaMenu(Screen):
     def __init__(self, **kwargs):
         super(TelaMenu, self).__init__(**kwargs)
 
-    def changetoCad(self):
-        self.manager.current = 'telacad'
+    def changetoCad_Cliente(self):
+        self.manager.current = 'telacad_cliente'
+
+    def changetoList_Cliente(self):
+        self.manager.current = 'telalist_cliente'
+
+
 
 
 

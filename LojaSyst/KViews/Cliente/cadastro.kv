@@ -2,12 +2,12 @@
 
 
 <GerenciarTelas>:
-    TelaCadastro:
+    TelaCadastroCliente:
 
 
-<TelaCadastro>:
+<TelaCadastroCliente>:
     id: telacads
-    name: 'telacad'
+    name: 'telacad_cliente'
     canvas.before:
         Color:
             rgba: hex('#CCCCCC')
@@ -64,7 +64,14 @@
     Button:
         text: 'Cadastrar'
         on_release: root.cadastrar()
+        on_release: root.parent.changetoMenu()
         size_hint_y: .05
+
+    Button:
+        text: 'Voltar para menu'
+        on_release: root.parent.changetoMenu()
+        size_hint_y: .05
+
 
 
 <Meucampo@BoxLayout>:
