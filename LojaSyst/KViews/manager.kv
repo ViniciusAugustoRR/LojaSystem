@@ -8,48 +8,62 @@
 
 
 <Menu@GridLayout>:
-    cols: 4
+    cols: 2
+    padding: 10, 10, 10, 10
 
-    #CLIENTES
-    Button:
-        text: "Cadastrar Clientes"
-        on_release: root.parent.changetoCad_Cliente()
-    Button:
-        text: "Lista de Clientes"
-        on_release: root.parent.changetoList_Cliente()
-
-
-    #Equipamento
-    Button:
-        text: "Cadastrar Equipamento"
-        on_release: root.parent.changetoCad_Equipamento()
-    Button:
-        text: "Lista de Equipamentos"
-        on_release: root.parent.changetoList_Equipamento()
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 10, 10, 10, 10
+        #Clientes
+        Button:
+            text: "Cadastrar Clientes"
+            on_release: root.parent.changetoCad_Cliente()
+        Button:
+            text: "Lista de Clientes"
+            on_release: root.parent.changetoList_Cliente()
 
 
-    #Marca
-    Button:
-        text: "Cadastrar Marca"
-        on_release: root.parent.changetoCad_Marca()
-    Button:
-        text: "Lista de Marcas"
-        on_release: root.parent.changetoList_Marca()
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 10, 10, 10, 10
+        #Equipamento
+        Button:
+            text: "Cadastrar Equipamento"
+            on_release: root.parent.changetoCad_Equipamento()
+        Button:
+            text: "Lista de Equipamentos"
+            on_release: root.parent.changetoList_Equipamento()
 
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 10, 10, 10, 10
 
-    #Responsaveis
-    Button:
-        text: "Cadastrar Responsavel"
-        on_release: root.parent.changetoCad_Tecnico()
-    Button:
-        text: "Lista de Responsaveis"
-        on_release: root.parent.changetoList_Tecnico()
+        #Marca
+        Button:
+            text: "Cadastrar Marca"
+            on_release: root.parent.changetoCad_Marca()
+        Button:
+            text: "Lista de Marcas"
+            on_release: root.parent.changetoList_Marca()
 
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 10, 10, 10, 10
+        #Responsaveis
+        Button:
+            text: "Cadastrar Responsavel"
+            on_release: root.parent.changetoCad_Tecnico()
+        Button:
+            text: "Lista de Responsaveis"
+            on_release: root.parent.changetoList_Tecnico()
 
-    #Serviço
-    Button:
-        text: "Cadastrar Serviço"
-        on_release: root.parent.changetoCad_Service()
-    Button:
-        text: "Lista de Serviços"
-        on_release: root.parent.changetoList_Service()
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 10, 10, 10, 10
+        #Serviço
+        Button:
+            text: "Cadastrar Serviço"
+            on_release: root.parent.changetoCad_Service()
+        Button:
+            text: "Lista de Serviços"
+            on_release: root.parent.changetoList_Service()

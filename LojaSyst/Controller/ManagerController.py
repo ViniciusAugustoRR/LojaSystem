@@ -10,6 +10,8 @@ from Controller.ClienteController import TelaCadastroCliente
 from Controller.ClienteController import TelaListaCliente
 from Controller.EquipamentoController import TelaCadastroEquipamento
 from Controller.MarcaController import TelaCadastroMarca
+from Controller.ResponsavelController import TelaCadastroResponsavel
+from Controller.ServiceController import TelaCadastroService
 
 Config.set('graphics', 'resizable', False)
 Window.size = (1000, 800)
@@ -29,8 +31,8 @@ Builder.load_file(os.path.join(dirname(__file__), '../KViews/Equipamento/lista.k
 Builder.load_file(os.path.join(dirname(__file__), '../KViews/Service/cadastro.kv'))
 Builder.load_file(os.path.join(dirname(__file__), '../KViews/Service/lista.kv'))
 
-Builder.load_file(os.path.join(dirname(__file__), '../KViews/Tecnico/cadastro.kv'))
-Builder.load_file(os.path.join(dirname(__file__), '../KViews/Tecnico/lista.kv'))
+Builder.load_file(os.path.join(dirname(__file__), '../KViews/Responsavel/cadastro.kv'))
+Builder.load_file(os.path.join(dirname(__file__), '../KViews/Responsavel/lista.kv'))
 
 Builder.load_file(os.path.join(dirname(__file__), '../KViews/Marca/cadastro.kv'))
 Builder.load_file(os.path.join(dirname(__file__), '../KViews/Marca/lista.kv'))
@@ -45,35 +47,36 @@ class TelaMenu(Screen):
     def __init__(self, **kwargs):
         super(TelaMenu, self).__init__(**kwargs)
 
+
+    #CLientes
     def changetoCad_Cliente(self):
         self.manager.current = 'telacad_cliente'
-
     def changetoList_Cliente(self):
         self.manager.current = 'telalist_cliente'
 
+    #Equipamento
     def changetoCad_Equipamento(self):
         self.manager.current = 'telacad_Equip'
-
     def changetoList_Equipamento(self):
         self.manager.current = 'telacad_Equip'
 
+    #Serivços
     def changetoCad_Service(self):
-        self.manager.current = 'telacad_cliente'
-
+        self.manager.current = 'telacad_service'
     def changetoList_Service(self):
-        self.manager.current = 'telalist_cliente'
+        self.manager.current = 'telacad_service'
 
+    #Marca
     def changetoCad_Marca(self):
         self.manager.current = 'telacad_marca'
-
     def changetoList_Marca(self):
-        self.manager.current = 'telacad_Equip'
+        self.manager.current = 'telacad_marca'
 
+    #Responsaveis
     def changetoCad_Tecnico(self):
-        self.manager.current = 'telacad_cliente'
-
+        self.manager.current = 'telacad_respons'
     def changetoList_Tecnico(self):
-        self.manager.current = 'telalist_cliente'
+        self.manager.current = 'telacad_respons'
 
 
 

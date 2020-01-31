@@ -2,22 +2,22 @@
 
 
 <GerenciarTelas>:
-    TelaCadastroMarca:
+    TelaCadastroResponsavel:
 
 
-<TelaCadastroMarca>:
+<TelaCadastroResponsavel>:
     id: telacads
-    name: 'telacad_marca'
+    name: 'telacad_respons'
     canvas.before:
         Color:
             rgba: hex('#CCCCCC')
         Rectangle:
             pos: self.pos
             size: self.size
-    AnchorMarca:
+    AnchorResponsavel:
 
 
-<AnchorMarca>:
+<AnchorResponsavel>:
     canvas.before:
         Color:
             rgba: hex('#AAAAAA')
@@ -33,9 +33,18 @@
         orientation: 'horizontal'
         size_hint_y: .05
         Label:
-            text: 'Nome da Marca: '
+            text: 'Nome do Responsavel: '
         TextInput:
             id: camponome
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .05
+        Label:
+            text: 'Categoria: '
+        TextInput:
+            id: campocateg
+
 
 
 
@@ -49,6 +58,3 @@
         text: 'Voltar para menu'
         on_release: root.parent.changetoMenu()
         size_hint_y: .05
-
-
-
