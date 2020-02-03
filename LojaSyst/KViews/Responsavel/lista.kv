@@ -1,0 +1,44 @@
+#:import hex kivy.utils.get_color_from_hex
+
+
+<GerenciarTelas>:
+    TelaListaResponsavel:
+
+
+<TelaListaResponsavel>:
+    name: 'telalist_respons'
+    BoxLayout:
+        orientation: 'vertical'
+        ListaResponsavel:
+
+        Button:
+            text: 'Volta para o Menu'
+            on_release: root.changetoMenu()
+            size_hint_y: .1
+
+
+<Rowp_Respons>:
+    id: rowp
+
+    canvas.before:
+        Color:
+            rgba: 0.5, 0.5, 0.5, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+
+<ListaResponsavel>:
+
+    id: rvlist
+    viewclass: 'Rowp_Respons'
+    scroll_type: ['bars', 'content']
+    scroll_wheel_distance: dp(114)
+    bar_width: dp(10)
+    RecycleBoxLayout:
+        default_size: None, dp(40)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        spacing: dp(2)

@@ -47,7 +47,6 @@ class TelaMenu(Screen):
     def __init__(self, **kwargs):
         super(TelaMenu, self).__init__(**kwargs)
 
-
     #CLientes
     def changetoCad_Cliente(self):
         self.manager.current = 'telacad_cliente'
@@ -58,25 +57,27 @@ class TelaMenu(Screen):
     def changetoCad_Equipamento(self):
         self.manager.current = 'telacad_Equip'
     def changetoList_Equipamento(self):
-        self.manager.current = 'telacad_Equip'
+        self.manager.current = 'telalist_equip'
 
     #Serivços
     def changetoCad_Service(self):
         self.manager.current = 'telacad_service'
     def changetoList_Service(self):
-        self.manager.current = 'telacad_service'
+        self.manager.current = 'telalist_service'
+
 
     #Marca
     def changetoCad_Marca(self):
         self.manager.current = 'telacad_marca'
     def changetoList_Marca(self):
-        self.manager.current = 'telacad_marca'
+        self.manager.current = 'telalist_marca'
+
 
     #Responsaveis
     def changetoCad_Tecnico(self):
         self.manager.current = 'telacad_respons'
     def changetoList_Tecnico(self):
-        self.manager.current = 'telacad_respons'
+        self.manager.current = 'telalist_respons'
 
 
 

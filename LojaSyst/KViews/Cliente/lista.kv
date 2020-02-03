@@ -7,57 +7,39 @@
 
 <TelaListaCliente>:
     name: 'telalist_cliente'
+    BoxLayout:
+        orientation: 'vertical'
+        Lista:
 
-    list_tela: list_box_id
+        Button:
+            text: 'Volta para o Menu'
+            on_release: root.changetoMenu()
+            size_hint_y: .1
 
-    Lista:
-        id: list_box_id
+<Rowp>:
+    id: rowp
 
-
-<Lista>:
-
-    list_box: lista_rec_id
-
-    canvas.before:
-        Color:
-            rgba: hex('#CCCCCC')
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-    orientation: 'vertical'
-
-
-    Button:
-        size_hint_y: .05
-        text: 'adicionar'
-        on_release: root.parent.popular()
-
-    RecycleView:
-        id: lista_rec_id
-
-        scroll_type: ['bars', 'content']
-        scroll_wheel_distance: dp(144)
-        bar_width: dp(10)
-        viewclass: 'Row'
-
-        RecycleBoxLayout:
-            default_size: None, dp(56)
-            default_size_hint: 1, None
-            size_hint_y : None
-            height: self.minimum_height
-            orientation: 'vertical'
-            spacing: dp(2)
-
-
-<Row@BoxLayout>:
     canvas.before:
         Color:
             rgba: 0.5, 0.5, 0.5, 1
         Rectangle:
             size: self.size
             pos: self.pos
-    value: ''
-    Label:
-        text: "item lista"
+
+<Lista>:
+
+    id: rvlist
+    viewclass: 'Rowp'
+    scroll_type: ['bars', 'content']
+    scroll_wheel_distance: dp(114)
+    bar_width: dp(10)
+    RecycleBoxLayout:
+        default_size: None, dp(40)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        spacing: dp(2)
+
+
 

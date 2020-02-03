@@ -1,9 +1,15 @@
-
+from kivy.app import App
+from kivy.uix.button import Button
+from kivy.uix.label import Label
+from kivy.uix.recycleview import RecycleView
+from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, BooleanProperty
 from Models.Cliente import ClienteMD
 from BD.BD import DBfac
+from kivy.clock import Clock
+
 
 
 #Builder.load_file(os.path.join(dirname(__file__), '../KViews/Cliente/lista.kv'))
@@ -43,15 +49,57 @@ TELA DE LISTA DE CLIENTES
 '''
 
 class TelaListaCliente(Screen):
-    list_tela = ObjectProperty()
-
     def __init__(self, **kwargs):
         super(TelaListaCliente, self).__init__(**kwargs)
 
 
-    def popular(self):
-        print(self.ids)
+    def changetoMenu(self):
+        self.manager.current = 'telamenu'
 
-class Lista(BoxLayout):
-    list_box = ObjectProperty()
-        #self.ids.rv.data = [{'value': ''.join(sample(ascii_lowercase, 6))} for x in range(50)]
+
+
+class Rowp(BoxLayout):
+    linha_cont = ObjectProperty()
+
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        Clock.schedule_once(self.concluirInit, 0)
+
+    def concluirInit(self, dt):
+        for cliente in self.linha_cont:
+
+            self.add_widget(Button(text=cliente.Nome_c))
+            self.add_widget(Button(text="Edit", size_hint_x=0.3))
+            self.add_widget(Button(text='Delete', size_hint_x=0.3))
+
+
+
+
+
+class Lista(RecycleView):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        db = DBfac()
+        clientes = db.ConsultarClientes()
+        for c in clientes:
+            print(c.Nome_c)
+
+        self.data = [{'linha_cont': [cliente]} for cliente in clientes]
+
+
+        print(self.data)
+
+
+
+
+
+
+
+
+
+
+
+
