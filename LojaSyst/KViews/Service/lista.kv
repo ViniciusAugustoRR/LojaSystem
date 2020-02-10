@@ -1,0 +1,45 @@
+#:import hex kivy.utils.get_color_from_hex
+
+
+<GerenciarTelas>:
+    TelaListaService:
+
+
+<TelaListaService>:
+    name: 'telalist_service'
+    BoxLayout:
+        orientation: 'vertical'
+        ListaServs:
+
+        Button:
+            text: 'Volta para o Menu'
+            on_release: root.changetoMenu()
+            size_hint_y: .1
+
+<RowServs>:
+    id: RowServs
+
+    canvas.before:
+        Color:
+            rgba: 0.5, 0.5, 0.5, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<ListaServs>:
+
+    id: rvlist
+    viewclass: 'RowServs'
+    scroll_type: ['bars', 'content']
+    scroll_wheel_distance: dp(114)
+    bar_width: dp(10)
+    RecycleBoxLayout:
+        default_size: None, dp(40)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        spacing: dp(2)
+
+
+

@@ -1,12 +1,13 @@
 '''
-                 data_o:datetime.date, hora_o: datetime.time,
-                 data: datetime.date, hora: datetime.time,
+ data_o:datetime.date,
+ data: datetime.date,
 
-                 cliente: ClienteMD,
-                 responsavel: ResponsavelMD,
-                 equipamento: EquipamentoMD'''
+ cliente: ClienteMD,
+ responsavel: ResponsavelMD,
+ equipamento: EquipamentoMD
+ '''
 
-import datetime
+from datetime import datetime
 from Models.Cliente import ClienteMD
 from Models.Responsavel import ResponsavelMD
 from Models.Equipamento import EquipamentoMD
@@ -16,11 +17,8 @@ class ServiceMD:
 
         self.Id = int
 
-        self.Data_i = datetime.date
-        self.Hora_i = datetime.time
-
-        self.Data_f = datetime.date
-        self.Hora_f = datetime.time
+        self.Data_i = datetime
+        self.Data_f = datetime
 
         self.Cliente_Id = int
         self.Responsavel_Id = int

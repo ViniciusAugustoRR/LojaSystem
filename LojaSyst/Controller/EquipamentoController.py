@@ -81,8 +81,7 @@ class Lista_Equip(RecycleView):
 
         db = DBfac()
         equips = db.ConsultarEquipamentos()
-        for c in equips:
-            print(c.Nome)
+
 
         self.data = [{'linha_cont_equip': [equip]} for equip in equips]
 

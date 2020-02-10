@@ -66,10 +66,9 @@ class ListaResponsavel(RecycleView):
 
         db = DBfac()
         reponsaveis = db.ConsultarTecnicos()
-        for repsons in reponsaveis:
-            print(repsons.Nome)
+
 
         self.data = [{'linha_cont_marca': [respons]} for respons in reponsaveis]
-        print(self.data)
+
 
 

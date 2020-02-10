@@ -66,15 +66,18 @@ class Rowp(BoxLayout):
         super().__init__(**kwargs)
         Clock.schedule_once(self.concluirInit, 0)
 
-    def concluirInit(self, dt):
+    def concluirInit(self, instance):
         for cliente in self.linha_cont:
 
             self.add_widget(Button(text=cliente.Nome_c))
-            self.add_widget(Button(text="Edit", size_hint_x=0.3))
-            self.add_widget(Button(text='Delete', size_hint_x=0.3))
+            self.add_widget(Button(text="Edit", size_hint_x=0.3, on_release=self.edit))
+            self.add_widget(Button(text='Delete', size_hint_x=0.3, on_release=self.delet))
 
+    def edit(self, instance):
+        print('edit')
 
-
+    def delet(self, instance):
+        print('delete')
 
 
 class Lista(RecycleView):
@@ -84,13 +87,10 @@ class Lista(RecycleView):
 
         db = DBfac()
         clientes = db.ConsultarClientes()
-        for c in clientes:
-            print(c.Nome_c)
+        print(clientes)
 
         self.data = [{'linha_cont': [cliente]} for cliente in clientes]
 
-
-        print(self.data)
 
 
 

@@ -1,4 +1,5 @@
-
+from datetime import datetime
+from datetime import date
 import mysql.connector
 from Models.Cliente import ClienteMD
 from Models.Equipamento import EquipamentoMD
@@ -246,23 +247,22 @@ class DBfac:
 
 ######################################################################
 
-
-    def CadastrarService(self, Service: ServiceMD):
+    def CadastrarMarca(self, Marca: MarcaMd):
 
         try:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            args = (Service.Data_i, Service.Data_f, Service.Hora_i, Service.Hora_f, Service.Cliente_Id, Service.Equipamento_Id, Service.Responsavel_Id)
-            querry = "INSERT INTO service(data_i, data_f, hora_i, hora_f, fk_cliente_id, fk_responsavel_id, fk_equipamento_id)" \
-                     " VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            args = (Marca.Nome_Marca, )
+            querry = "INSERT INTO marca(nome_marca) " \
+                     " VALUES (%s)"
 
             cursor.execute(querry, args)
 
             if cursor.lastrowid:
-                print("Service com o id " + str(cursor.lastrowid) + "Cadastrado com sucesso !!")
+                print("Marca com o id " + str(cursor.lastrowid) + "Cadastrada com sucesso !!")
             else:
-                print("Service n cadastrado")
+                print("Marca n cadastrado")
 
             db.commit()
 
@@ -273,31 +273,27 @@ class DBfac:
             cursor.close()
             db.close()
 
-    def ConsultarServices(self):
+    def ConsultarMarcas(self):
+
         try:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            cursor.execute("select * from service;")
-            ServicesDB = cursor.fetchall()
+            cursor.execute("select * from marca;")
+            MarcasDb = cursor.fetchall()
 
-            Services = []
+            Marcas = []
 
-            for listaItems in ServicesDB:
-                Service1 = ServiceMD()
+            for listaItems in MarcasDb:
+                Marca1 = MarcaMd()
 
-                Service1.Id = listaItems[0]
-                Service1.Data = listaItems[1]
-                Service1.Data_o = listaItems[2]
-                Service1.Hora = listaItems[3]
-                Service1.Hora_o = listaItems[4]
-                Service1.Cliente_Id = listaItems[5]
-                Service1.Responsavel_Id = listaItems[6]
-                Service1.Equipamento_Id = listaItems[7]
+                Marca1.Id = listaItems[0]
+                Marca1.Nome_Marca = listaItems[1]
 
-                Services.append(Service1)
 
-            return Services
+                Marcas.append(Marca1)
+
+            return Marcas
 
         except Error as error:
             print(error)
@@ -306,29 +302,21 @@ class DBfac:
             cursor.close()
             db.close()
 
-    def ConsultarService(self, Service_Id: int):
-
+    def ConsultarMarca(self, Marca_Id: int):
         try:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            querry = "select * from service where id_service = %s;"
-            cursor.execute(querry, (Service_Id,))
-
+            querry = "select * from marca where id_marca = %s;"
+            cursor.execute(querry, (Marca_Id,))
 
             for listaItems in cursor:
-                Service1 = EquipamentoMD()
+                Marca1 = MarcaMd()
 
-                Service1.Id = listaItems[0]
-                Service1.Data = listaItems[1]
-                Service1.Data_o = listaItems[2]
-                Service1.Hora = listaItems[3]
-                Service1.Hora_o = listaItems[4]
-                Service1.Cliente_Id = listaItems[5]
-                Service1.Responsavel_Id = listaItems[6]
-                Service1.Equipamento_Id = listaItems[7]
+                Marca1.Id = listaItems[0]
+                Marca1.Nome_Marca = listaItems[1]
 
-            return Service1
+            return Marca1
 
         except Error as error:
             print(error)
@@ -337,15 +325,15 @@ class DBfac:
             cursor.close()
             db.close()
 
-    def DeletarService(self, Service_Id: int):
+    def DeletarMarca(self, Marca_Id: int):
         try:
 
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            querry = "DELETE FROM service Where id_service = %s "
+            querry = "DELETE FROM marca Where id_marca = %s "
 
-            cursor.execute(querry, (Service_Id,))
+            cursor.execute(querry, (Marca_Id,))
 
             db.commit()
 
@@ -462,22 +450,23 @@ class DBfac:
 ######################################################################
 
 
-    def CadastrarMarca(self, Marca: MarcaMd):
+
+    def CadastrarService(self, Service: ServiceMD):
 
         try:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            args = (Marca.Nome_Marca, )
-            querry = "INSERT INTO marca(nome_marca) " \
-                     " VALUES (%s)"
+            args = (Service.Data_i, Service.Data_f, Service.Cliente_Id, Service.Responsavel_Id, Service.Equipamento_Id)
+            querry = "INSERT INTO service(data_i, data_f, fk_cliente_id, fk_responsavel_id, fk_equipamento_id)" \
+                     " VALUES (%s, %s, %s, %s, %s)"
 
             cursor.execute(querry, args)
 
             if cursor.lastrowid:
-                print("Marca com o id " + str(cursor.lastrowid) + "Cadastrada com sucesso !!")
+                print("Service com o id " + str(cursor.lastrowid) + "Cadastrado com sucesso !!")
             else:
-                print("Marca n cadastrado")
+                print("Service n cadastrado")
 
             db.commit()
 
@@ -488,27 +477,29 @@ class DBfac:
             cursor.close()
             db.close()
 
-    def ConsultarMarcas(self):
-
+    def ConsultarServices(self):
         try:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            cursor.execute("select * from marca;")
-            MarcasDb = cursor.fetchall()
+            cursor.execute("select * from service;")
+            ServicesDB = cursor.fetchall()
 
-            Marcas = []
+            Services = []
 
-            for listaItems in MarcasDb:
-                Marca1 = MarcaMd()
+            for listaItems in ServicesDB:
+                Service1 = ServiceMD()
 
-                Marca1.Id = listaItems[0]
-                Marca1.Nome_Marca = listaItems[1]
+                Service1.Id = listaItems[0]
+                Service1.Data_i = listaItems[1].strftime("%d/%m/%Y %H:%M:%S")
+                Service1.Data_f = listaItems[2].strftime("%d/%m/%Y %H:%M:%S")
+                Service1.Cliente_Id = listaItems[3]
+                Service1.Responsavel_Id = listaItems[4]
+                Service1.Equipamento_Id = listaItems[5]
 
+                Services.append(Service1)
 
-                Marcas.append(Marca1)
-
-            return Marcas
+            return Services
 
         except Error as error:
             print(error)
@@ -517,21 +508,27 @@ class DBfac:
             cursor.close()
             db.close()
 
-    def ConsultarMarca(self, Marca_Id: int):
+    def ConsultarService(self, Service_Id: int):
+
         try:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            querry = "select * from marca where id_marca = %s;"
-            cursor.execute(querry, (Marca_Id,))
+            querry = "select * from service where id_service = %s;"
+            cursor.execute(querry, (Service_Id,))
+
 
             for listaItems in cursor:
-                Marca1 = MarcaMd()
+                Service1 = ServiceMD()
 
-                Marca1.Id = listaItems[0]
-                Marca1.Nome_Marca = listaItems[1]
+                Service1.Id = listaItems[0]
+                Service1.Data_i = listaItems[1].strftime("%d/%m/%Y %H:%M:%S")
+                Service1.Data_f = listaItems[2].strftime("%d/%m/%Y %H:%M:%S")
+                Service1.Cliente_Id = listaItems[3]
+                Service1.Responsavel_Id = listaItems[4]
+                Service1.Equipamento_Id = listaItems[5]
 
-            return Marca1
+            return Service1
 
         except Error as error:
             print(error)
@@ -540,15 +537,15 @@ class DBfac:
             cursor.close()
             db.close()
 
-    def DeletarMarca(self, Marca_Id: int):
+    def DeletarService(self, Service_Id: int):
         try:
 
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            querry = "DELETE FROM marca Where id_marca = %s "
+            querry = "DELETE FROM service Where id_service = %s "
 
-            cursor.execute(querry, (Marca_Id,))
+            cursor.execute(querry, (Service_Id,))
 
             db.commit()
 
@@ -566,9 +563,13 @@ class DBfac:
 '''
 CLIENTE = OK
 MARCA = OK
-
+RESPOSNAVEIS = OK
+EQUIPAMENTO = OK
+SERVICES = OK
+ALL OK BOIS, WE DID IT
 '''
-'''MeuDb = DBfac()
+'''
+MeuDb = DBfac()
 Clientes = MeuDb.ConsultarClientes()
 for Cliente in Clientes:
     print(Cliente.Id)
@@ -590,35 +591,29 @@ for serv in Services:
     print(serv.Cliente_Id)
     print(serv.Data_i)
     print(serv.Hora_i)
-    print(serv.Equipamento_Id)'''
-'''service = ServiceMD()
+    print(serv.Equipamento_Id)
 
-service.Cliente_Id = 9
-service.Equipamento_Id = 1
-service.Responsavel_Id = 1
-
-service.Data_i = datetime.date(2020, 1, 2)
-service.Hora_i = datetime.time(14, 34, 13)
-
-service.Data_f = datetime.date(2020, 2, 1)
-service.Hora_f = datetime.time(15, 23, 3)
-
-MeuDb.CadastrarService(service)'''
-'''Equipamento.Nome = "Radio"
-Equipamento.Acessorios = "Carregador"
-Equipamento.Modelo = "987sa98fankf"
-Equipamento.Serie_N = "7sfsfsZ2"
-Equipamento.Marca_id = 3
-
-MeuDb.CadastrarEquipamento(Equipamento)'''
-'''ClienteNo = ClienteMD()
+MeuDb.CadastrarEquipamento(Equipamento)
+ClienteNo = ClienteMD()
 
 ClienteNo.Nome_c = "Mila Muniz Pinto"
 ClienteNo.Enderec = "Algum predio em salvador fds"
 ClienteNo.Telefone = "719284879231"
 ClienteNo.Email = "MIlamunizalgodotipo.com"
 
-print(ClienteNo.__dict__)'''
+print(ClienteNo.__dict__)
+
+MeuDb = DBfac()
+service = ServiceMD()
+
+service.Cliente_Id = 9
+service.Equipamento_Id = 1
+service.Responsavel_Id = 1
+service.Data_i = datetime.now()
+# RECEBE DATA E HORA ATUAL
+service.Data_f = datetime(2020, 5, 14, 13, 20, 5)
+# ANO -> MÊS -> DIA   /////   HORA -> MINUTO -> SEGUNDO
+# .strftime("%d/%m/%Y %H:%M:%S")
 
 
-
+MeuDb.CadastrarService(service)'''

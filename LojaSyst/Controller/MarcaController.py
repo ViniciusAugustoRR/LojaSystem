@@ -52,9 +52,10 @@ class Rowp_Marca(BoxLayout):
         super().__init__(**kwargs)
         Clock.schedule_once(self.concluirInit, 0)
 
-    def concluirInit(self, dt):
-        for marca in self.linha_cont_marca:
 
+    def concluirInit(self, dt):
+
+        for marca in self.linha_cont_marca:
             self.add_widget(Button(text=marca.Nome_Marca))
             self.add_widget(Button(text="Edit", size_hint_x=0.3))
             self.add_widget(Button(text='Delete', size_hint_x=0.3))
@@ -68,10 +69,7 @@ class ListaMarcas(RecycleView):
 
         db = DBfac()
         marcas = db.ConsultarMarcas()
-        for marca in marcas:
-            print(marca.Nome_Marca)
+
 
         self.data = [{'linha_cont_marca': [marca]} for marca in marcas]
 
-
-        print(self.data)
