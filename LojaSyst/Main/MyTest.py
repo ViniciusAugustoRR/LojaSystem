@@ -1,22 +1,30 @@
 
 import re
 from datetime import datetime
+from BD.BD import DBfac
 
 
-
-def convertDateTime( data: str, hora: str):
+def convertDateTime(data: str, hora: str):
     datastr = list(re.split("/|:| ", data + " " + hora))
     dataint = []
 
     for item in datastr:
         dataint.append(int(item))
 
-    datatuple = tuple(dataint)
+    datatimetype = datetime(dataint[2], dataint[1], dataint[0], dataint[3], dataint[4], dataint[5])
 
-    return dataint
+    return datatimetype
 
 
-data = "10/10/2020"
-hour = "12:12:12"
+data = "12/12/2012"
+hour = "13:11:14"
 
-datahora = datetime(convertDateTime(data, hour)).strftime("%d/%m/%Y %H:%M:%S")
+print(type(data))
+
+datahora = convertDateTime(data, hour)
+
+print(datahora)
+print(type(datahora))
+
+db = DBfac()
+

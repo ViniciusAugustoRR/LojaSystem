@@ -1,5 +1,5 @@
 from datetime import datetime
-from datetime import date
+import time
 import mysql.connector
 from Models.Cliente import ClienteMD
 from Models.Equipamento import EquipamentoMD
@@ -451,17 +451,18 @@ class DBfac:
 
 
 
-    def CadastrarService(self, Service: ServiceMD):
+    def CadastrarService(self, service: ServiceMD):
 
         try:
             db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
             cursor = db.cursor()
 
-            args = (Service.Data_i, Service.Data_f, Service.Cliente_Id, Service.Responsavel_Id, Service.Equipamento_Id)
-            querry = "INSERT INTO service(data_i, data_f, fk_cliente_id, fk_responsavel_id, fk_equipamento_id)" \
-                     " VALUES (%s, %s, %s, %s, %s)"
 
+            args = (service.Data_i, service.Data_f, service.Cliente_Id, service.Responsavel_Id, service.Equipamento_Id)
+            querry = "INSERT INTO service(data_i, data_f, fk_cliente_id, fk_responsavel_id, fk_equipamento_id)" \
+                     " VALUES (%s, %s, %s, %s, %s);"
             cursor.execute(querry, args)
+
 
             if cursor.lastrowid:
                 print("Service com o id " + str(cursor.lastrowid) + "Cadastrado com sucesso !!")
@@ -483,23 +484,22 @@ class DBfac:
             cursor = db.cursor()
 
             cursor.execute("select * from service;")
-            ServicesDB = cursor.fetchall()
+            servicesDB = cursor.fetchall()
 
-            Services = []
+            services = []
 
-            for listaItems in ServicesDB:
-                Service1 = ServiceMD()
+            for listaItems in servicesDB:
 
-                Service1.Id = listaItems[0]
-                Service1.Data_i = listaItems[1].strftime("%d/%m/%Y %H:%M:%S")
-                Service1.Data_f = listaItems[2].strftime("%d/%m/%Y %H:%M:%S")
-                Service1.Cliente_Id = listaItems[3]
-                Service1.Responsavel_Id = listaItems[4]
-                Service1.Equipamento_Id = listaItems[5]
+                service1 = ServiceMD(data_i=listaItems[1],
+                                     data_f=listaItems[2],
+                                     cliente_id=listaItems[3],
+                                     responsavel_id=listaItems[4],
+                                     equipamento_id=listaItems[5])
+                service1.Id = listaItems[0]
 
-                Services.append(Service1)
+                services.append(service1)
 
-            return Services
+            return services
 
         except Error as error:
             print(error)
@@ -560,6 +560,30 @@ class DBfac:
 ######################################################################
 
 
+'''def TesteData(self, Data: datetime):
+    try:
+        db = mysql.connector.connect(host="localhost", user="root", password="", database="lojasyst")
+        cursor = db.cursor()
+
+        args = (Data, )
+        querry = "INSERT INTO teste(datateste)" \
+                 " VALUES (%s)"
+
+        cursor.execute(querry, args)
+
+        if cursor.lastrowid:
+            print("Service com o id " + str(cursor.lastrowid) + "Cadastrado com sucesso !!")
+        else:
+            print("Service n cadastrado")
+
+        db.commit()
+
+    except Error as error:
+        print(error)
+
+    finally:
+        cursor.close()
+        db.close()'''
 '''
 CLIENTE = OK
 MARCA = OK
